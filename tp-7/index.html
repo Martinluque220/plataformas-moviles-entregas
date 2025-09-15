@@ -22,8 +22,8 @@ console.log(suma(-10,10)); // 0
 
 
 // 2- Implementar una función "elevarAlCubo" que eleve al cubo un numero
-function elevarAlCubo(num) {
-    return Math.pow(num, 3);
+function elevarAlCubo(numcub) {
+    return (numcub ** 3);
 }
 
 console.log("Resultados de elevarAlCubo():")
@@ -45,7 +45,7 @@ console.log(restoDivisionEntera(4,3)); // 1
 
 // 4- Implementar una función "numeroPi"
 function numeroPi() {
-    return Number(Math.PI.toFixed(2));
+    return 3,14;
 }
 
 console.log("Resultado de numeroPi():")
@@ -87,8 +87,8 @@ console.log(esPar(-2)); // true
 
 
 // 8- Implementar una función "esPositivo"
-function esPositivo(num) {
-    return num > 0;
+function esPositivo(numpos) {
+    return numpos > 0;
 }
 
 console.log("Resultados de esPositivo():")
@@ -98,7 +98,7 @@ console.log(esPositivo(0)); // false
 
 
 // 9- Implementar una función "clasificarNumero"
-function clasificarNumero(num) {
+function clasificarNumero(numcal) {
     let paridad = (num % 2 === 0) ? "par" : "impar";
     let signo = (num > 0) ? "positivo" : (num < 0) ? "negativo" : "no positivo";
     return `El número ${num} es ${paridad} y ${signo}.`;
@@ -113,8 +113,8 @@ console.log(clasificarNumero(0));
 // Cadenas de Caracteres
 
 // 10- Implementar una función "transformarMayuscula"
-function transformarMayuscula(texto) {
-    return texto.toUpperCase();
+function transformarMayuscula(texto1) {
+    return texto1.toUpperCase();
 }
 
 console.log("Resultados de transformarMayuscula():")
@@ -124,8 +124,8 @@ console.log(transformarMayuscula("abc"))
 
 
 // 11- Implementar una función "primeraLetra"
-function primeraLetra(texto) {
-    return texto.charAt(0);
+function primeraLetra(texto2) {
+    return texto2.charAt(0);
 }
 
 console.log("Resultados de primeraLetra():")
@@ -135,8 +135,8 @@ console.log(primeraLetra("abc"))
 
 
 // 12- Implementar una función "sinPrimeraLetra"
-function sinPrimeraLetra(texto) {
-    return texto.slice(1);
+function sinPrimeraLetra(texto3) {
+    return texto3.slice(1);
 }
 
 console.log("Resultados de sinPrimeraLetra():")
@@ -146,8 +146,8 @@ console.log(sinPrimeraLetra("abc"))
 
 
 // 13- Implementar una función "primeraLetraMayuscula"
-function primeraLetraMayuscula(texto) {
-    return texto.charAt(0).toUpperCase() + texto.slice(1);
+function primeraLetraMayuscula(texto4) {
+    return texto4.charAt(0).toUpperCase() + texto.slice(1);
 }
 
 console.log("Resultados de primeraLetraMayuscula():")
@@ -169,8 +169,8 @@ console.log(terminaCon("plataformas", "más")); // false
 
 
 // 15- Implementar una función "palabraInvertida"
-function palabraInvertida(texto) {
-    return texto.split("").reverse().join("");
+function palabraInvertida(texto5) {
+    return texto5.split("").reverse().join("");
 }
 
 console.log("Resultados de palabraInvertida():")
