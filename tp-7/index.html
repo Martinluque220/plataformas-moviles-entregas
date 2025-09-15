@@ -75,8 +75,8 @@ console.log(numeroRandomDesdeHasta(3,4))
 
 
 // 7- Implementar una función "esPar"
-function esPar(num) {
-    return num % 2 === 0;
+function esPar(numpar) {
+    return numpar % 2 === 0;
 }
 
 console.log("Resultados de esPar():")
@@ -99,9 +99,9 @@ console.log(esPositivo(0)); // false
 
 // 9- Implementar una función "clasificarNumero"
 function clasificarNumero(numcal) {
-    let paridad = (num1 % 2 === 0) ? "par" : "impar";
-    let signo = (num1 > 0) ? "positivo" : (num1 < 0) ? "negativo" : "no positivo";
-    return `El número ${num1} es ${paridad} y ${signo}.`;
+    let paridad = (numcal % 2 === 0) ? "par" : "impar";
+    let signo = (numcal > 0) ? "positivo" : (numcal < 0) ? "negativo" : "no positivo";
+    return `El número ${numcal} es ${paridad} y ${signo}.`;
 }
 
 console.log("Resultados de clasificarNumero():")
