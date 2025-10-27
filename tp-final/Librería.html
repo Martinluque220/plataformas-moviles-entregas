@@ -6,19 +6,52 @@
 </head>
 <body>
   <h2>Buscar libros en Open Library</h2>
-  <input type="text" id="title" placeholder="Ej: Harry Potter">
+  <input type="text" id="title" placeholder="Buscar libro o autor">
   <button onclick="searchBook()">Buscar</button>
-  <div id="results"></div>
+  <div id="resultados"></div>
 
   <script>
+  
     function searchBook() {
       const title = document.getElementById("title").value;
       const url = `https://openlibrary.org/search.json?title=${encodeURIComponent(title)}`;
 
       fetch(url)
         .then(res => res.json())
-        .then(data => console.log("Resultados de la búsqueda:", data.docs.slice(0, 5)));
+        .then(data =>{
+          const resultadosDiv = document.getElementById("resultados")
+          resultadosDiv.innerHTML = "";
+        
+
+        if (data.docs.length === 0){
+          resultadosDiV.innerHTML = "no se encontraron resultados de libro o autor." ;
+          return;
+        }
+
+        data.docs.slice(0, 5).forEach(book => {
+        const coverId = book.cover_i;
+        const coverurl = coverId
+
+        ? `https://covers.openlibrary.org/b/id/${coverId}-M.jpg`
+        : "https://via.placeholder.com/128x195?text=Sin+portada"
+
+        resultadosDiv.innerHTML += `
+        
+        <div>
+        <img src="${coverurl}" width="100">
+        <p><b>${book.title}</b><br>autor: ${book.author_name}</p>
+        </div>
+
+        `;
+  
+
+          
+        });
+
+
+      });
     }
+  
   </script>
 </body>
 </html>
