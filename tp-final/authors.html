@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Información del Autor</title>
+</head>
+<body>
+  <h2>Información del Autor</h2>
+  <div id="authorInfo">Cargando información...</div>
+
+  <script>
+    // Función para obtener el parámetro de la URL
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    // Obtener el authorKey desde la URL
+    const authorKey = getQueryParam("authorKey");
+
+    if (authorKey) {
+      const url = `https://openlibrary.org/authors/${authorKey}.json`;
+
+      fetch(url)
+        .then(res => res.json())
+        .then(data => {
+          const authorDiv = document.getElementById("authorInfo");
+
+          const name = data.name || "Nombre desconocido";
+          const birthDate = data.birth_date || "Desconocida";
+          const deathDate = data.death_date || "";
+          const bio = data.bio
+            ? (typeof data.bio === "string" ? data.bio : data.bio.value)
+            : "No hay biografía disponible.";
+
+          const photo = data.photos
+            ? `https://covers.openlibrary.org/a/id/${data.photos[0]}-L.jpg`
+            : "https://via.placeholder.com/150?text=Sin+foto";
+
+          authorDiv.innerHTML = `
+            <img src="${photo}" width="150"><br>
+            <h3>${name}</h3>
+            <p><b>Nacimiento:</b> ${birthDate}</p>
+            ${deathDate ? `<p><b>Fallecimiento:</b> ${deathDate}</p>` : ""}
+            <p><b>Biografía:</b> ${bio}</p>
+          `;
+        })
+        .catch(err => {
+          document.getElementById("authorInfo").innerHTML =
+            "Error al cargar los datos del autor.";
+          console.error(err);
+        });
+    } else {
+      document.getElementById("authorInfo").innerHTML =
+        "No se proporcionó un autor válido.";
+    }
+  </script>
+
+  <a href="index.html">volver al buscador</a>
+</body>
+</html>
