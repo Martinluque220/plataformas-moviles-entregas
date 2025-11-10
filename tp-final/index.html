@@ -2,34 +2,28 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- importante para móviles -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Búsqueda de libros - Open Library</title>
-
-  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <style>
     body {
       background-color: #f8f9fa;
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
 
     .buscador {
       max-width: 700px;
       margin: 0 auto;
-      text-align: center;
+      padding: 0 15px;
     }
 
-    /* Tarjetas */
     .tarjetas {
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       transition: transform 0.2s ease-in-out;
-      border: none;
-      border-radius: 10px;
     }
 
     .tarjetas:hover {
-      transform: translateY(-5px);
+      transform: scale(1.03);
     }
 
     .card-img-top {
@@ -38,37 +32,10 @@
       max-width: 150px;
     }
 
-    /* Responsividad: ajustar tamaños en pantallas pequeñas */
-    @media (max-width: 768px) {
-      .buscador h2 {
-        font-size: 1.5rem;
-      }
-
-      .input-group input {
-        font-size: 0.9rem;
-      }
-
-      .btn {
-        font-size: 0.9rem;
-        padding: 0.4rem 0.8rem;
-      }
-
-      .card-title {
-        font-size: 0.9rem;
-      }
-
-      .card-text {
-        font-size: 0.85rem;
-      }
-
-      .card-img-top {
-        max-width: 120px;
-      }
-    }
-
+    /* Ajustes responsivos */
     @media (max-width: 576px) {
-      .buscador {
-        padding: 0 1rem;
+      h2 {
+        font-size: 1.3rem;
       }
 
       .input-group {
@@ -76,37 +43,42 @@
       }
 
       .input-group input {
-        border-radius: 0.5rem;
-        margin-bottom: 0.5rem;
+        width: 100%;
+        border-radius: 0.5rem !important;
+        margin-bottom: 10px;
       }
 
-      .input-group .btn {
+      .input-group button {
         width: 100%;
+        border-radius: 0.5rem !important;
       }
 
       .card-img-top {
-        max-width: 100px;
+        max-width: 120px;
+      }
+
+      .card-body h6 {
+        font-size: 0.9rem;
       }
     }
   </style>
 </head>
 <body>
-  <div class="container py-4">
-    <div class="buscador">
+  <div class="container py-5">
+    <div class="buscador text-center">
       <h2 class="mb-4 text-primary fw-bold">Buscar libros en Open Library</h2>
 
       <div class="input-group mb-4 shadow-sm">
-        <input 
-          type="text" 
-          id="title" 
-          class="form-control" 
+        <input
+          type="text"
+          id="title"
+          class="form-control"
           placeholder="Escribí el título del libro o autor">
         <button class="btn btn-primary px-4" onclick="searchBook()">Buscar</button>
       </div>
     </div>
 
-    <div id="resultados" 
-         class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center mt-4">
+    <div id="resultados" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center mt-4">
       <!-- Resultados dinámicos -->
     </div>
   </div>
@@ -147,17 +119,15 @@
             const tarjeta = `
               <div class="col d-flex">
                 <div class="card flex-fill text-center p-3 tarjetas">
-                  <img src="${coverUrl}" 
-                       class="card-img-top mx-auto rounded mb-3" 
+                  <img src="${coverUrl}"
+                       class="card-img-top mx-auto rounded mb-3"
                        alt="Portada del libro">
                   <div class="card-body">
-                    <h6 class="card-title fw-bold text-truncate" title="${book.title}">
-                      ${book.title}
-                    </h6>
+                    <h6 class="card-title fw-bold text-truncate" title="${book.title}">${book.title}</h6>
                     <p class="card-text text-muted mb-0">
                       Autor: ${
-                        authorId 
-                          ? `<a href="authors.html?id=${authorId}" class="text-decoration-none">${authorName}</a>` 
+                        authorId
+                          ? `<a href="authors.html?id=${authorId}" class="text-decoration-none">${authorName}</a>`
                           : authorName
                       }
                     </p>
@@ -180,7 +150,6 @@
     }
   </script>
 
-  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
