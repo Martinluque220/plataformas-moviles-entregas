@@ -4,10 +4,11 @@
   <meta charset="UTF-8">
   <title>Autor - Open Library</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap para diseño y estilos -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <style>
-    /* Imagen del autor centrada y responsiva */
+    /* Imagen del autor centrada y con borde redondeado */
     .autor-img {
       max-width: 200px;
       width: 100%;
@@ -18,7 +19,7 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
 
-    /* Tarjetas de libros */
+    /* Efecto de hover sobre las tarjetas */
     .card {
       transition: transform 0.2s ease;
     }
@@ -36,26 +37,29 @@
 
 <body class="bg-light">
   <div class="container py-4">
+    <!-- Botón para volver a la página principal -->
     <a href="index.html" class="btn btn-secondary mb-3">&larr; Volver</a>
 
-    <!-- Información del autor -->
+    <!-- Contenedor donde se cargará la información del autor -->
     <div id="autor" class="card p-4 mb-4 shadow-sm text-center">
       <p class="text-muted">Cargando información del autor...</p>
     </div>
 
     <h4 class="text-primary mb-3 text-center">Libros del autor</h4>
+    <!-- Contenedor para mostrar las obras -->
     <div id="libros" class="row g-3 justify-content-center"></div>
   </div>
 
   <script>
+    // Obtiene el ID del autor desde la URL (por ejemplo, authors.html?id=OL12345A)
     const params = new URLSearchParams(window.location.search);
     const autorId = params.get("id");
 
     if (autorId) {
-      // Imagen del autor
+      // URL de la imagen del autor
       const imagenUrl = `https://covers.openlibrary.org/a/olid/${autorId}-M.jpg`;
 
-      // Obtener info del autor
+      // Obtiene información del autor
       fetch(`https://openlibrary.org/authors/${autorId}.json`)
         .then(res => res.json())
         .then(autor => {
@@ -71,10 +75,11 @@
           `;
         })
         .catch(() => {
+          // Error al cargar la información del autor
           document.getElementById("autor").innerHTML = `<div class="alert alert-danger">No se pudo cargar la información del autor.</div>`;
         });
 
-      // Obtener obras del autor
+      // Obtiene las obras del autor
       fetch(`https://openlibrary.org/authors/${autorId}/works.json`)
         .then(res => res.json())
         .then(data => {
@@ -84,6 +89,7 @@
             return;
           }
 
+          // Muestra los primeros 12 libros
           data.entries.slice(0, 12).forEach(libro => {
             const coverUrl = libro.covers
               ? `https://covers.openlibrary.org/b/id/${libro.covers[0]}-M.jpg`
@@ -103,11 +109,13 @@
           });
         })
         .catch(() => {
+          // Error al cargar los libros del autor
           document.getElementById("libros").innerHTML = `<div class="alert alert-danger">No se pudieron cargar los libros.</div>`;
         });
     }
   </script>
 
+  <!-- Script de Bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
