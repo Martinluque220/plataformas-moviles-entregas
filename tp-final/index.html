@@ -84,11 +84,11 @@
         <!-- Campo de texto -->
         <input
           type="text"
-          id="title"
+          id="titulo"
           class="form-control"
           placeholder="Escribí el título del libro o autor">
         <!-- Botón que dispara la función de búsqueda -->
-        <button class="btn btn-primary px-4" onclick="searchBook()">Buscar</button>
+        <button class="btn btn-primary px-4" onclick="buscarlibro()">Buscar</button>
       </div>
     </div>
 
@@ -99,8 +99,8 @@
 
   <script>
     /* Función que se ejecuta al presionar "Buscar" */
-    function searchBook() {
-      const title = document.getElementById("title").value.trim();
+    function buscarlibro() {
+      const title = document.getElementById("titulo").value.trim();
       if (!title) {
         alert("Por favor, escribí un título o autor.");
         return;
